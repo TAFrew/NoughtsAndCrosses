@@ -54,6 +54,15 @@ public class Main extends Application{
 		AnimationTimer timer = new AnimationTimer() {
 			@Override
 			public void handle(long now) {
+				if(playerHasWon()){
+					//timer.stop();
+					// TODO alert user
+				}
+				if(AIHasWon()){
+					//timer.stop();
+					// TODO alert user
+				}
+				
 				if(!(_playersTurn)){
 					AITurn();
 				}
@@ -61,6 +70,16 @@ public class Main extends Application{
 		};
 
 		timer.start();
+	}
+
+	protected boolean AIHasWon() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	protected boolean playerHasWon() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	protected void AITurn() {
@@ -74,6 +93,14 @@ public class Main extends Application{
 			_playersTurn = true;
 			return;
 		}
+		/*location = wherePlayerCanWinNextTurn();
+		if(!(location == -1)){
+			// go in location
+			((Rectangle)_squares.get(location)).setFill(Color.BLUE);
+			_turn++;
+			_playersTurn = true;
+			return;
+		}*/
 		else{
 			if(_turn == 2){
 				if(scenario1()){
@@ -520,7 +547,7 @@ public class Main extends Application{
 			return 4;
 		}
 		if(isSelectedByPlayer(2) && isSelectedByPlayer(4) && (!isSelectedByAnyone(6))){
-			return 8;
+			return 6;
 		}
 		if(isSelectedByPlayer(4) && isSelectedByPlayer(6) && (!isSelectedByAnyone(2))){
 			return 2;
